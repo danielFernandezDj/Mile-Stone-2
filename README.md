@@ -68,3 +68,8 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+import \* as React from 'react';
+import { AppBar, Box, Container, IconButton, Typography } from "@mui/material";
+import { Menu, MenuIcon, Toolbar, Avatar } from "@mui/material";
+import { Button, Tooltip, MenuItem, AdbIcon } from "@mui/material";
