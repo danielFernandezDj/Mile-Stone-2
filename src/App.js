@@ -1,6 +1,6 @@
 // MUI
 import * as React from 'react';
-import { Container, Box, dividerClasses } from '@mui/material';
+import { Container, Box } from '@mui/material';
 
 // Components
 import TireCard from './components/TireCard';
