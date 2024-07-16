@@ -1,22 +1,20 @@
 import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
+
+// MUI dependencies
+import { Box, Container } from '@mui/material';
+import { IconButton, Typography, Button, } from "@mui/material";
+import { AppBar, Menu, Toolbar, MenuItem } from "@mui/material";
+import { Avatar, Tooltip,  } from "@mui/material";
+
+// MUI icons
 import MenuIcon from '@mui/icons-material/Menu';
-import Toolbar from '@mui/material/Toolbar';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
-import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
+
 
 const pages = ['Products', 'Pricing'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
-function NavBar() {
+export default function NavBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -159,5 +157,3 @@ function NavBar() {
     </AppBar>
   );
 }
-
-export default NavBar;
