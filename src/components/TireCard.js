@@ -3,8 +3,9 @@ import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 
+import React, { useState, useEffect } from 'react';
+
 // MUI dependencies
-import * as React from 'react';
 import { Card, CardActions, CardContent, CardMedia } from '@mui/material';
 import { ThemeProvider, createTheme, Stack, Box } from '@mui/material';
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
@@ -29,6 +30,7 @@ const theme = createTheme({
 });
 
 export default function TireCard() {
+  
   return (
     <ThemeProvider theme={theme}>
       <Card sx={{ maxWidth: 345, mt: 2, mb: 2 }} >
