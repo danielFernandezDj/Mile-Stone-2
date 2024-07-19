@@ -4,14 +4,15 @@ import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 
 import React, { useContext } from 'react';
+import { TireContext } from '../context/TireContext';
 
 // Material UI
 import { Card, CardActions, CardContent, CardMedia } from '@mui/material';
-import { ThemeProvider, createTheme, Stack, Box } from '@mui/material';
+import { ThemeProvider, createTheme, Stack } from '@mui/material';
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
 import { Typography, Button } from '@mui/material';
-import { TireContext } from '../context/TireContext';
 
+// CSS Theme
 const theme = createTheme({
   palette: {
     text: {
@@ -30,8 +31,9 @@ const theme = createTheme({
   }
 });
 
-export default function TireCard() {
+export default function TireCard({ tire }) {
   const { addToCart } = useContext(TireContext)
+  console.log(tire.image)
 
   return (
     <ThemeProvider theme={theme}>
@@ -49,9 +51,9 @@ export default function TireCard() {
             spacing={3}
             direction="column"
           >
-            <Typography variant='h5' fontWeight="700"> {tire.brand_name} </Typography>  // Brand Name
-            <Typography variant='h6' fontWeight="700"> {tire.size} </Typography> // Tire Size
-            <Typography variant='h4' fontWeight="700" > {tire.price} </Typography> // Price
+            <Typography variant='h5' fontWeight="700"> {tire.brand_name} </Typography>  {/* Brand Name */}
+            <Typography variant='h6' fontWeight="700"> {tire.size} </Typography>  {/* Tire Size */}
+            <Typography variant='h4' fontWeight="700" > {tire.price} </Typography>  {/* Price */}
 
             <CardActions>
               <Button onClick={() => addToCart(tire)}

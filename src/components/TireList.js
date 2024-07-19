@@ -8,7 +8,7 @@ export default function TireList() {
   return (
     <div>
       {tires.map(tire => (
-        <TireCard key={tire.id} tire={tire} />
+        <TireCard key={tire.tire_id} tire={tire} />
       ))}
     </div>
   );
