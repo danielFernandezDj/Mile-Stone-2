@@ -6,9 +6,11 @@ export const TireProvider = ({ children }) => {
   const [tires, setTires] = useState([]);
   const [cart, setCart] = useState([]);
 
+  const apiUrl = 'http://localhost:4000/api/tires';
+
   useEffect(() => {
     const fetchTires = async () => {
-      const response = await fetch('http://localhost:4000/tires');
+      const response = await fetch(apiUrl);
       const data = await response.json();
       setTires(data);
     };
