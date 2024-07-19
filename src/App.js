@@ -1,9 +1,10 @@
 // MUI
 import * as React from 'react';
-import { Container, Box } from '@mui/material';
+import { Container } from '@mui/material';
+import { TireProvider } from './context/TireContext';
 
 // Components
-import TireCard from './components/TireCard';
+import TireList from './components/TireList';
 import NavBar from './components/NavBar';
 
 function App() {
@@ -14,7 +15,9 @@ function App() {
         border: '4px solid #b4e4fc',
         height: '100vh',
       }}>
-        <TireCard />
+        <TireProvider>
+          <TireList />
+        </TireProvider>
       </Container>
     </div>
   );

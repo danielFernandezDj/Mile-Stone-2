@@ -3,13 +3,14 @@ import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 
-import React, { useState, useEffect } from 'react';
+import React, { useContext } from 'react';
 
-// MUI dependencies
+// Material UI
 import { Card, CardActions, CardContent, CardMedia } from '@mui/material';
 import { ThemeProvider, createTheme, Stack, Box } from '@mui/material';
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
 import { Typography, Button } from '@mui/material';
+import { TireContext } from '../context/TireContext';
 
 const theme = createTheme({
   palette: {
@@ -30,15 +31,16 @@ const theme = createTheme({
 });
 
 export default function TireCard() {
-  
+  const { addToCart } = useContext(TireContext)
+
   return (
     <ThemeProvider theme={theme}>
       <Card sx={{ maxWidth: 345, mt: 2, mb: 2 }} >
         <Stack direction={'row'} >
           <CardMedia
             component="img"
-            image="/images/Designer2.png"
-            title="Tire"
+            image={tire.image}
+            title={tire.brand_name}
             sx={{ width: '50%', margin: 'auto', }}
           />
 
@@ -47,12 +49,15 @@ export default function TireCard() {
             spacing={3}
             direction="column"
           >
-            <Typography variant='h5' fontWeight="700"> Good Year A/T </Typography>
-            <Typography variant='h6' fontWeight="700"> LT225/75.R16  </Typography>
-            <Typography variant='h4' fontWeight="700" > $125 </Typography>
+            <Typography variant='h5' fontWeight="700"> {tire.brand_name} </Typography>  // Brand Name
+            <Typography variant='h6' fontWeight="700"> {tire.size} </Typography> // Tire Size
+            <Typography variant='h4' fontWeight="700" > {tire.price} </Typography> // Price
 
             <CardActions>
-              <Button variant="contained" color={"addButton"} sx={{ width: '130px', }}>
+              <Button onClick={() => addToCart(tire)}
+                variant="contained"
+                color={"addButton"}
+                sx={{ width: '130px', }}>
                 <AddRoundedIcon fontSize='large' sx={{ color: 'white', }} />
                 <Typography variant='h5' fontWeight="700" textTransform={"none"} color={'white'}> Add </Typography>
               </Button>
