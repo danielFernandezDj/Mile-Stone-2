@@ -18,14 +18,10 @@ export const TireProvider = ({ children }) => {
     fetchTires();
   }, []);
 
+  // POST request to add a tire to the cart
   const addToCart = (tire) => {
+    console.log('log.tire', tire);
     setCart((prevCart) => {
-      const existingTire = prevCart.find(item => item.id === tire.id);
-      if (existingTire) {
-        return prevCart.map(item =>
-          item.id === tire.id ? { ...item, quantity: item.quantity + 1 } : item
-        );
-      }
       return [...prevCart, { ...tire, quantity: 1 }];
     });
   };
