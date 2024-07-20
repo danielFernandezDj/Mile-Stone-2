@@ -33,7 +33,7 @@ const theme = createTheme({
 
 export default function TireCard({ tire }) {
   const { addToCart } = useContext(TireContext)
-  console.log(tire.image)
+  // console.log(tire.image)
 
   return (
     <ThemeProvider theme={theme}>

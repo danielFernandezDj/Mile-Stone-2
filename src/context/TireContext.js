@@ -18,18 +18,15 @@ export const TireProvider = ({ children }) => {
     fetchTires();
   }, []);
 
+  // POST request to add a tire to the cart
   const addToCart = (tire) => {
+    console.log('log.tire',tire);
     setCart((prevCart) => {
-      const existingTire = prevCart.find(item => item.id === tire.id);
-      if (existingTire) {
-        return prevCart.map(item =>
-          item.id === tire.id ? { ...item, quantity: item.quantity + 1 } : item
-        );
-      }
       return [...prevCart, { ...tire, quantity: 1 }];
     });
   };
 
+  // PUT to update the filter quantity
   const updateCart = (tireId, quantity) => {
     setCart((prevCart) =>
       prevCart.map(item =>
@@ -38,6 +35,7 @@ export const TireProvider = ({ children }) => {
     );
   };
 
+  // DELETE request to remove a tire from the cart
   const removeFromCart = (tireId) => {
     setCart((prevCart) => prevCart.filter(item => item.id !== tireId));
   };

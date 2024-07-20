@@ -6,6 +6,8 @@ import { TireProvider } from './context/TireContext';
 // Components
 import TireList from './components/TireList';
 import NavBar from './components/NavBar';
+import ShoppingCart from './components/ShoppingCart';
+
 
 function App() {
   return (
@@ -17,6 +19,7 @@ function App() {
       }}>
         <TireProvider>
           <TireList />
+          <ShoppingCart />
         </TireProvider>
       </Container>
     </div>
