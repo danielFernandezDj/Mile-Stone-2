@@ -6,6 +6,7 @@ import { TireProvider } from './context/TireContext';
 // Components
 import TireList from './components/TireList';
 import NavBar from './components/NavBar';
+import CartItems from './components/CartItems';
 
 function App() {
   return (
@@ -16,7 +17,8 @@ function App() {
         height: '100vh',
       }}>
         <TireProvider>
-          <TireList />
+          {/* <CartItems />  */}
+          {/* <TireList /> */}
         </TireProvider>
       </Container>
     </div>
