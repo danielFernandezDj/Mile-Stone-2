@@ -8,6 +8,7 @@ export const TireProvider = ({ children }) => {
 
   const apiUrl = 'http://localhost:4000/api/tires';
 
+  // GET request to fetch all tires
   useEffect(() => {
     const fetchTires = async () => {
       const response = await fetch(apiUrl);
@@ -26,6 +27,7 @@ export const TireProvider = ({ children }) => {
     });
   };
 
+  // PUT request to update the quantity of a tire in the cart
   const updateCart = (tireId, quantity) => {
     setCart((prevCart) =>
       prevCart.map(item =>
@@ -34,6 +36,7 @@ export const TireProvider = ({ children }) => {
     );
   };
 
+  // DELETE request to remove a tire from the cart
   const removeFromCart = (tireId) => {
     setCart((prevCart) => prevCart.filter(item => item.id !== tireId));
   };
