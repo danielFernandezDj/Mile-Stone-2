@@ -5,7 +5,7 @@ export const TireContext = createContext();
 export const TireProvider = ({ children }) => {
   const [tires, setTires] = useState([]);
   const [cart, setCart] = useState([]);
-
+  const [treadPattern, setTreadPattern] = useState('');
   const apiUrl = 'http://localhost:4000/api/tires';
 
   // GET request to fetch all tires
