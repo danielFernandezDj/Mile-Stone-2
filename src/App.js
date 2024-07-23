@@ -6,7 +6,7 @@ import { TireProvider } from './context/TireContext';
 // Components
 import TireList from './components/TireList';
 import NavBar from './components/NavBar';
-// import CartItems from './components/ShoppingCart';
+import CartItems from './components/ShoppingCart';
 import TireFilter from './components/TireFilter'
 
 function App() {
@@ -19,7 +19,7 @@ function App() {
       }}>
         <TireProvider>
         <TireFilter />
-          {/* <CartItems />  */}
+          <CartItems /> 
           <TireList />
         </TireProvider>
       </Container>
