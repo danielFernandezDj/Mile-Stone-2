@@ -1,16 +1,20 @@
 import React, { useContext } from 'react';
 import { TireContext } from "../context/TireContext";
-
-// components
 import TireCard from "./TireCard";
-import TireFilter from "./TireFilter"
 
 export default function TireList() {
-  const { tires } = useContext(TireContext);
+  const { tires, sizeFilter, treadPatternFilter } = useContext(TireContext);
+
+  const filteredTires = tires.filter(tire => {
+    return (
+      (!sizeFilter || tire.size === sizeFilter) &&
+      (!treadPatternFilter || tire.treadPattern === treadPatternFilter)
+    );
+  });
 
   return (
     <div>
-      {tires.map(tire => (
+      {filteredTires.map(tire => (
         <TireCard key={tire.tire_id} tire={tire} />
       ))}
     </div>
