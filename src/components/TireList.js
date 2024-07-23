@@ -7,11 +7,11 @@ export default function TireList() {
 
   const filteredTires = tires.filter(tire => {
     return (
-      (!sizeFilter || tire.size === sizeFilter) &&
-      (!treadPatternFilter || tire.treadPattern === treadPatternFilter)
+       tire.size === sizeFilter &&
+       tire.tread_pattern === treadPatternFilter
     );
   });
-
+console.log(filteredTires)
   return (
     <div>
       {filteredTires.map(tire => (

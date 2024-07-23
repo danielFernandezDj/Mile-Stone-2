@@ -8,6 +8,7 @@ import TireList from './components/TireList';
 import NavBar from './components/NavBar';
 import CartItems from './components/ShoppingCart';
 import TireFilter from './components/TireFilter'
+import TireCard from './components/TireCard';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         border: '4px solid #b4e4fc',
         height: '100vh',
       }}>
+        
         <TireProvider>
         <TireFilter />
           <CartItems /> 

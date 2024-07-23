@@ -17,6 +17,11 @@ export default function TireFilter() {
 
   return (
     <Stack direction={'row'} margin={2} gap={1}>
+
+
+
+
+      
       <Box sx={{ minWidth: 150 }}>
         <FormControl fullWidth>
           <InputLabel id="tire-size-select-label">Tire size</InputLabel>

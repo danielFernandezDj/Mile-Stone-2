@@ -7,7 +7,7 @@ export const TireProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
   const [sizeFilter, setSizeFilter] = useState('');
   const [treadPatternFilter, setTreadPatternFilter] = useState('');
-
+console.log(treadPatternFilter)
   const apiUrl = 'http://localhost:4000/api/tires';
 
   useEffect(() => {
