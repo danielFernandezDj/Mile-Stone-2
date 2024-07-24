@@ -1,18 +1,71 @@
-import React, { useContext } from 'react';
-import { TireContext } from "../context/TireContext";
+import React, { useEffect, useState } from "react";
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
+import { Button } from '@mui/material';
 
-// components
-import TireCard from "./TireCard";
-import TireFilter from "./TireFilter"
+// Component
+import TireEdit from "./TireEdit";
+
+const apiUrl = 'http://localhost:4000/api/tires';
 
 export default function TireList() {
-  const { tires } = useContext(TireContext);
+  const [tires, setTires] = useState([]);
+
+  // delete to do
+  const handleDelete = async (id) => {
+    try {
+      const response = await fetch(`${apiUrl}/${id}`, { method: "DELETE" });
+
+      if (response.ok) {
+        setTires(tires.filter((tire) => tire.tire_id !== id));
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  // get all items
+  const getTires = async () => {
+    try {
+      const response = await fetch(apiUrl);
+      const jsonData = await response.json();
+
+      setTires(jsonData);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  // on load run get all items function
+  useEffect(() => {
+    getTires();
+  }, []);
 
   return (
-    <div>
-      {tires.map(tire => (
-        <TireCard key={tire.tire_id} tire={tire} />
-      ))}
-    </div>
+    <>
+      <Table className="table mt-5 text-left">
+        <TableHead>
+          <TableRow>
+            <TableCell>Task Description</TableCell>
+            <TableCell>Edit Task</TableCell>
+            <TableCell>Delete Task</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {tires.map((tires) => (
+            <TableRow key={tires.todo_id}>
+              <TableCell>{tires.description}</TableCell>
+              <TableCell>
+                {/* <TireEdit tires={tires} /> */}
+              </TableCell>
+              <TableCell>
+                <Button onClick={() => handleDelete(tires.tire_id)} variant="contained">
+                  Delete
+                </Button>
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </>
   );
 }
