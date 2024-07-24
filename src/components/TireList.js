@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
+import { Table, TableBody, TableCell, TableHead, TableRow  } from '@mui/material';
 import { Button } from '@mui/material';
 
 // Component
@@ -45,17 +45,17 @@ export default function TireList() {
       <Table className="table mt-5 text-left">
         <TableHead>
           <TableRow>
-            <TableCell>Task Description</TableCell>
-            <TableCell>Edit Task</TableCell>
-            <TableCell>Delete Task</TableCell>
+            <TableCell>Tire Size</TableCell>
+            <TableCell>Edit Tire</TableCell>
+            <TableCell>Delete Tire</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {tires.map((tires) => (
-            <TableRow key={tires.todo_id}>
+            <TableRow key={tires.tire_id}>
               <TableCell>{tires.description}</TableCell>
               <TableCell>
-                {/* <TireEdit tires={tires} /> */}
+                <TireEdit tires={tires} />
               </TableCell>
               <TableCell>
                 <Button onClick={() => handleDelete(tires.tire_id)} variant="contained">

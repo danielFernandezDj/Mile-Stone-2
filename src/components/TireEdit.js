@@ -1,14 +1,17 @@
 import React, { useState } from "react";
-import { fetchPath} from "./hooks/FetchPaths";
+import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@mui/material';
+import { Button, Box } from '@mui/material';
 
-export default function EditToDo({ todo }) {
-  const [description, setDescription] = useState(todo.description);
+const apiUrl = 'http://localhost:4000/api/tires';
 
-  const updateDescription = async (e) => {
+export default function TireEdit({ tires }) {
+  const [size, setSize] = useState(tires.size);
+
+  const updateSize = async (e) => {
     e.preventDefault();
     try {
-      const body = { description };
-      const response = await fetch(`${fetchPath}/${todo.todo_id}`, {
+      const body = { size };
+      const response = await fetch(`${apiUrl}/${tires.tire_id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
@@ -21,47 +24,75 @@ export default function EditToDo({ todo }) {
     }
   };
 
+  // Dialog MUi
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
     <div>
-      <div className="container">
-        <button type="button" className="btn btn-warning" data-bs-toggle="modal" data-bs-target={`#id${todo.todo_id}`}>
-          Edit Task
-        </button>
-      </div>
+      <Box>
+        <Button
+          type="button"
+          variant="contained"
+          onClick={handleClickOpen}
+          data-bs-target={`#id${tires.tire_id}`}
+        >
+          Edit Tire
+        </Button>
+      </Box>
 
-      <div
+      <Dialog
+        open={open}
         className="modal"
-        id={`id${todo.todo_id}`}
+        onClose={handleClose}
+
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+
+        id={`id${tires.tire_id}`}
         onClick={() => {
-          setDescription(todo.description);
+          setSize(tires.size);
         }}
       >
-        <div className="modal-dialog">
+        <DialogTitle id="alert-dialog-title">
+          {"Type a different value!"}
+        </DialogTitle>
+
           <div className="modal-content">
             <div className="modal-header">
               <h4 className="modal-title">Edit Task</h4>
-              <button
+              <Button
                 type="button"
-                className="btn-close"
-                data-bs-dismiss="modal"
+                variant="contained"
                 onClick={() => {
-                  setDescription(todo.description);
+                  setSize(tires.size);
                 }}
-              ></button>
+              ></Button>
             </div>
 
             <div className="modal-body">
-              <input className="form-control" type="text" value={description} onChange={(e) => setDescription(e.target.value)} />
+              <input className="form-control" type="text" value={size} onChange={(e) => setSize(e.target.value)} />
             </div>
 
             <div className="modal-footer">
-              <button type="button" className="btn btn-danger" data-bs-dismiss="modal" onClick={(e) => updateDescription(e)}>
+              <button
+                type="button"
+                className="btn btn-danger"
+                data-bs-dismiss="modal"
+                onClick={(e) => updateSize(e)}
+              >
                 Edit
               </button>
             </div>
           </div>
-        </div>
-      </div>
+      </Dialog>
     </div>
   );
 }
