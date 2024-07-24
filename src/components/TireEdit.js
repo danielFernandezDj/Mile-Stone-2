@@ -1,22 +1,24 @@
 import React, { useState } from "react";
 import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@mui/material';
-import { Button, Box } from '@mui/material';
+import { Button, Input, Box, TextField } from '@mui/material';
 
 const apiUrl = 'http://localhost:4000/api/tires';
 
 export default function TireEdit({ tires }) {
   const [size, setSize] = useState(tires.size);
+  const [tempSize, setTempSize] = useState(tires.size);
 
   const updateSize = async (e) => {
     e.preventDefault();
     try {
-      const body = { size };
+      const body = { size: tempSize };
       const response = await fetch(`${apiUrl}/${tires.tire_id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
       });
       if (response.ok) {
+        setSize(tempSize)
         window.location = "/";
       }
     } catch (error) {
@@ -28,6 +30,7 @@ export default function TireEdit({ tires }) {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
+    setTempSize(size)
     setOpen(true);
   };
 
@@ -44,7 +47,7 @@ export default function TireEdit({ tires }) {
           onClick={handleClickOpen}
           data-bs-target={`#id${tires.tire_id}`}
         >
-          Edit Tire
+          Edit
         </Button>
       </Box>
 
@@ -54,7 +57,7 @@ export default function TireEdit({ tires }) {
         onClose={handleClose}
 
         aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
+        // aria-describedby="alert-dialog-description"
 
         id={`id${tires.tire_id}`}
         onClick={() => {
@@ -62,36 +65,30 @@ export default function TireEdit({ tires }) {
         }}
       >
         <DialogTitle id="alert-dialog-title">
-          {"Type a different value!"}
+          {"Change the Tire Size!"}
         </DialogTitle>
 
-          <div className="modal-content">
-            <div className="modal-header">
-              <h4 className="modal-title">Edit Task</h4>
-              <Button
-                type="button"
-                variant="contained"
-                onClick={() => {
-                  setSize(tires.size);
-                }}
-              ></Button>
-            </div>
+        <DialogContent>
+          <Box>
+            <TextField
+              value={tempSize}
+              type="text"
+              id="outlined-basic"
+              variant="outlined"
+              onChange={(e) => setTempSize(e.target.value)}
+            />
+          </Box>
 
-            <div className="modal-body">
-              <input className="form-control" type="text" value={size} onChange={(e) => setSize(e.target.value)} />
-            </div>
-
-            <div className="modal-footer">
-              <button
-                type="button"
-                className="btn btn-danger"
-                data-bs-dismiss="modal"
-                onClick={(e) => updateSize(e)}
-              >
-                Edit
-              </button>
-            </div>
-          </div>
+          <Box>
+            <Button
+              type="submit"
+              variant="outlined"
+              onClick={(e) => updateSize(e)}
+            >
+              Edit
+            </Button>
+          </Box>
+        </DialogContent>
       </Dialog>
     </div>
   );

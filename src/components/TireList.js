@@ -59,7 +59,7 @@ export default function TireList() {
               </TableCell>
               <TableCell>
                 <Button onClick={() => handleDelete(tires.tire_id)} variant="contained">
-                  Delete
+                  X
                 </Button>
               </TableCell>
             </TableRow>
