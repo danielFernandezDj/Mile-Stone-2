@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { Typography, Button } from '@mui/material';
-import { Table, TableBody, TableCell, TableHead, TableRow  } from '@mui/material';
-export default function Input() {
+import { Typography, Button, Input, InputLabel } from '@mui/material';
+
+
+export default function NewInput() {
   const [size, setSize] = useState("");
   const apiUrl = 'http://localhost:4000/api/tires';
 
@@ -22,11 +23,23 @@ export default function Input() {
     }
   };
 
+  const ariaLabel = { 'aria-label': 'description' };
+
   return (
     <>
-      <Typography variant="h1">List:</Typography>
+      <Typography variant="h1">Tire List </Typography>
+
       <form onSubmit={handleSubmit}>
-        <input 
+        <InputLabel htmlFor="tire-size">New Tire</InputLabel>
+        <Input sx={{ marginRight: 2, }}
+          required
+          id="tire-size"
+          placeholder="225/70/15"
+          inputProps={{
+            'aria-label': 'Tire size',
+            minLength: 8,
+            maxLength: 10,
+          }}
           type="text"
           value={size}
           onChange={(e) => setSize(e.target.value)}
@@ -34,11 +47,13 @@ export default function Input() {
         <Button
           variant="contained"
           size="small"
-          type="submit" // Ensure the button submits the form
+          type="submit"
+          disabled={!size.trim()} // Disable button if size is empty or whitespace
         >
           Add
         </Button>
-      </form>
+
+      </form >
     </>
   );
 }

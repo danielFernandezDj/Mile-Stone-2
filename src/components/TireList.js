@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Table, TableBody, TableCell, TableHead, TableRow  } from '@mui/material';
+
+// Material UI
+import { Table, TableBody, TableCell, TableHead, TableRow, IconButton } from '@mui/material';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+
 import { Button } from '@mui/material';
 
 // Component
@@ -47,20 +51,25 @@ export default function TireList() {
           <TableRow>
             <TableCell>Tire Size</TableCell>
             <TableCell>Edit Tire</TableCell>
-            <TableCell>Delete Tire</TableCell>
+            <TableCell>Delete</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {tires.map((tires) => (
             <TableRow key={tires.tire_id}>
-              <TableCell>{tires.description}</TableCell>
+              <TableCell>{tires.size}</TableCell>
               <TableCell>
                 <TireEdit tires={tires} />
               </TableCell>
               <TableCell>
-                <Button onClick={() => handleDelete(tires.tire_id)} variant="contained">
-                  X
-                </Button>
+                <IconButton onClick={() => handleDelete(tires.tire_id)}
+                  variant="contained"
+                  aria-label="delete"
+                  color="primary"
+                  size="small"
+                >
+                  <DeleteForeverIcon fontSize="large"/>
+                </IconButton>
               </TableCell>
             </TableRow>
           ))}

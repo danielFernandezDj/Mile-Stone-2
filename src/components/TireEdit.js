@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@mui/material';
-import { Button, Input, Box, TextField } from '@mui/material';
+import { Button, Box, TextField } from '@mui/material';
 
 const apiUrl = 'http://localhost:4000/api/tires';
 
@@ -64,13 +64,15 @@ export default function TireEdit({ tires }) {
           setSize(tires.size);
         }}
       >
-        <DialogTitle id="alert-dialog-title">
-          {"Change the Tire Size!"}
+        <DialogTitle sx={{ fontSize: 30, fontWeight: 'bold' }}
+          id="alert-dialog-title">
+          {"Change the Size!"}
         </DialogTitle>
 
-        <DialogContent>
+        <DialogContent sx={{textAlign: 'center'}}>
           <Box>
-            <TextField
+            <TextField sx={{ mb: 2, width: 1/2}}
+              width="20px"
               value={tempSize}
               type="text"
               id="outlined-basic"
