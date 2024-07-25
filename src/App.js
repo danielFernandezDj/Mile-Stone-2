@@ -13,8 +13,10 @@ function App() {
         border: '4px solid #b4e4fc',
         height: '100vh',
       }}>
+
         <Input />
         <List />
+
       </Container>
     </div>
   );

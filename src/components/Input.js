@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Typography, Button, Input, InputLabel, } from '@mui/material';
+import { Typography, Button, Input, InputLabel } from '@mui/material';
 
 
 export default function NewInput() {
@@ -12,7 +12,7 @@ export default function NewInput() {
       const body = { size };
       const response = await fetch(apiUrl, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "content-Type": "application/json" },
         body: JSON.stringify(body),
       });
       if (response.ok) {
@@ -30,13 +30,13 @@ export default function NewInput() {
       <Typography variant="h1">Tire List </Typography>
 
       <form onSubmit={handleSubmit}>
-        <InputLabel htmlFor="new-tire">New Tire</InputLabel>
+        <InputLabel htmlFor="tire-size">New Tire</InputLabel>
         <Input sx={{ marginRight: 2, }}
           required
           id="tire-size"
           placeholder="225/70/15"
           inputProps={{
-            'aria-label': 'tire-size',
+            'aria-label': 'Tire size',
             minLength: 8,
             maxLength: 10,
           }}
@@ -47,11 +47,12 @@ export default function NewInput() {
         <Button
           variant="contained"
           size="small"
-          type="submit" 
-          disable={!size.trim()}// Ensure the button submits the form
+          type="submit"
+          disabled={!size.trim()} // Disable button if size is empty or whitespace
         >
           Add
         </Button>
+
       </form >
     </>
   );
