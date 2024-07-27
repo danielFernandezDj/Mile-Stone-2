@@ -47,14 +47,14 @@ export default function NewInput() {
           value={size}
           onChange={(e) => setSize(e.target.value)}
         />
-        <Button
+        {/* <Button
           variant="contained"
           size="small"
           type="submit"
           disabled={!size.trim()} // Disable button if size is empty or whitespace
         >
           Add
-        </Button>
+        </Button> */}
 
       {/* </form > */}
 
@@ -67,7 +67,7 @@ export default function NewInput() {
           inputProps={{
             'aria-label': 'Brand name',
             minLength: 4,
-            maxLength: 16,
+            maxLength: 35,
           }}
           type="text"
           value={brandName}
@@ -100,14 +100,14 @@ export default function NewInput() {
           value={treadPattern}
           onChange={(e) => setTreadPattern(e.target.value)}
         />
-        <Button
+        {/* <Button
           variant="contained"
           size="small"
           type="submit"
           disabled={!treadPattern.trim()} // Disable button if size is empty or whitespace
         >
           Add
-        </Button>
+        </Button> */}
 
       </form >
 
