@@ -13,7 +13,7 @@ const apiUrl = 'http://localhost:4000/api/tires';
 
 export default function TireList() {
   const [tires, setTires] = useState([]);
-
+  
   // delete to do
   const handleDelete = async (id) => {
     try {
@@ -76,5 +76,49 @@ export default function TireList() {
         </TableBody>
       </Table>
     </>
+
+
+
+
   );
 }
+
+// return (
+//   <>
+//     <Table className="table mt-5 text-left">
+//       <TableHead>
+//         <TableRow>
+//           <TableCell>Tire Size</TableCell>
+//           <TableCell>Brand</TableCell>
+//           <TableCell>Tread Pattern</TableCell>
+//           <TableCell>Edit Tire</TableCell>
+//           <TableCell>Delete</TableCell>
+//         </TableRow>
+//       </TableHead>
+//       <TableBody>
+//         {tires.map((tire) => (
+//           <TableRow key={tire.tire_id}>
+//             <TableCell>{tire.size}</TableCell>
+//             <TableCell>{tire.brand}</TableCell>
+//             <TableCell>{tire.treadPattern}</TableCell>
+//             <TableCell>
+//               <TireEdit tire={tire} />
+//             </TableCell>
+//             <TableCell>
+//               <IconButton 
+//                 onClick={() => handleDelete(tire.tire_id)}
+//                 variant="contained"
+//                 aria-label="delete"
+//                 color="primary"
+//                 size="small"
+//               >
+//                 <DeleteForeverIcon fontSize="large" />
+//               </IconButton>
+//             </TableCell>
+//           </TableRow>
+//         ))}
+//       </TableBody>
+//     </Table>
+//   </>
+// );
+// }

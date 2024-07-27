@@ -6,6 +6,9 @@ const apiUrl = 'http://localhost:4000/api/tires';
 
 export default function TireEdit({ tires }) {
   const [size, setSize] = useState(tires.size);
+  const [brand, setBrand] = useState(tires.brand);
+  const [treadPattern, setTreadPattern] = useState(tires.treadPattern);
+
   const [tempSize, setTempSize] = useState(tires.size);
 
   const updateSize = async (e) => {
