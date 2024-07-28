@@ -7,7 +7,7 @@ export default function NewInput() {
   const [brandName, setBrandName] = useState("");
   const [stock, setStock] = useState("");
   const [treadPattern, setTreadPattern] = useState("");
-const [price, setPrice] = useState ("")
+  const [price, setPrice] = useState ("")
   const apiUrl = 'http://localhost:4000/api/tires';
 
   const handleSubmit = async (e) => {
@@ -112,7 +112,7 @@ const [price, setPrice] = useState ("")
         <Input sx={{ marginRight: 5, }}
           required
           id="price"
-          placeholder="225/70/15"
+          placeholder="000"
           inputProps={{
             'aria-label': 'Price',
             minLength: 2,
