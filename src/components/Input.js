@@ -5,6 +5,7 @@ import { Typography, Button, Input, InputLabel, Box } from '@mui/material';
 export default function NewInput() {
   const [size, setSize] = useState("");
   const [brandName, setBrandName] = useState("");
+  const [stock, setStock] = useState("");
   const [treadPattern, setTreadPattern] = useState("")
 
   const apiUrl = 'http://localhost:4000/api/tires';
@@ -66,11 +67,28 @@ export default function NewInput() {
           value={brandName}
           onChange={(e) => setBrandName(e.target.value)}
         />
+
+        <InputLabel htmlFor="stock">Stock</InputLabel>
+        <Input sx={{ marginRight: 5, }}
+          required
+          id="stock"
+          placeholder="Stock"
+          inputProps={{
+            'aria-label': 'Stock',
+            minLength: 2,
+            maxLength: 20,
+          }}
+          type="text"
+          value={stock}
+          onChange={(e) => setStock(e.target.value)}
+        />
+
+
         <Button
           variant="contained"
           size="small"
           type="submit"
-          disabled={!size.trim() && !brandName.trim() && !treadPattern.trim()} // Disable button if size is empty or whitespace
+          disabled={!size.trim() && !brandName.trim() && !treadPattern.trim() && !stock.trim()} // Disable button if size is empty or whitespace
         >
           Add
         </Button>
