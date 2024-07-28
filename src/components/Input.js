@@ -1,15 +1,15 @@
 import React, { useState } from "react";
-import { Typography, Button, Input, InputLabel } from '@mui/material';
+import { Typography, Button, Input, InputLabel, Box } from '@mui/material';
 
 
 export default function NewInput() {
   const [size, setSize] = useState("");
-  const [brandName, setBrandName]= useState("");
-  const [treadPattern, setTreadPattern]= useState("")
-  
+  const [brandName, setBrandName] = useState("");
+  const [treadPattern, setTreadPattern] = useState("")
+
   const apiUrl = 'http://localhost:4000/api/tires';
 
-  const handleSubmit = async (e) => { 
+  const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const body = { size, brand_name: brandName, tread_pattern: treadPattern };
@@ -30,7 +30,11 @@ export default function NewInput() {
 
   return (
     <>
-      <Typography variant="h1">Tire List </Typography>
+      <Box
+        textAlign={"center"}
+      >
+        <Typography variant="h1" fontWeight={"bold"}>Tire List </Typography>
+      </Box>
 
       <form onSubmit={handleSubmit}>
         <InputLabel htmlFor="tire-size">Tire Size</InputLabel>
@@ -47,18 +51,7 @@ export default function NewInput() {
           value={size}
           onChange={(e) => setSize(e.target.value)}
         />
-        {/* <Button
-          variant="contained"
-          size="small"
-          type="submit"
-          disabled={!size.trim()} // Disable button if size is empty or whitespace
-        >
-          Add
-        </Button> */}
 
-      {/* </form > */}
-
-      {/* <form onSubmit={handleSubmit}> */}
         <InputLabel htmlFor="brand_name">Brand Name</InputLabel>
         <Input sx={{ marginRight: 5, }}
           required
@@ -77,15 +70,11 @@ export default function NewInput() {
           variant="contained"
           size="small"
           type="submit"
-          disabled={!brandName.trim()} // Disable button if size is empty or whitespace
+          disabled={!size.trim() && !brandName.trim() && !treadPattern.trim()} // Disable button if size is empty or whitespace
         >
           Add
         </Button>
 
-      </form >
-
-
-      <form onSubmit={handleSubmit}>
         <InputLabel htmlFor="tread_pattern">Tread Pattern</InputLabel>
         <Input sx={{ marginRight: 5, }}
           required
@@ -100,18 +89,7 @@ export default function NewInput() {
           value={treadPattern}
           onChange={(e) => setTreadPattern(e.target.value)}
         />
-        {/* <Button
-          variant="contained"
-          size="small"
-          type="submit"
-          disabled={!treadPattern.trim()} // Disable button if size is empty or whitespace
-        >
-          Add
-        </Button> */}
-
       </form >
-
-
     </>
   );
 }
