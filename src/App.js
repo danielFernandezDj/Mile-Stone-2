@@ -10,7 +10,6 @@ function App() {
   return (
     <div>
       <Container sx={{
-        border: '4px solid #b4e4fc',
         height: '100vh',
       }}>
 

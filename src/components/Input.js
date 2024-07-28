@@ -3,17 +3,15 @@ import { Typography, Button, Input, InputLabel, Box } from '@mui/material';
 
 
 export default function NewInput() {
+  const [brand, setBrand] = useState("");
   const [size, setSize] = useState("");
-  const [brandName, setBrandName] = useState("");
-  const [stock, setStock] = useState("");
-  const [treadPattern, setTreadPattern] = useState("");
-  const [price, setPrice] = useState ("")
+  const [tread, setTread] = useState("");
   const apiUrl = 'http://localhost:4000/api/tires';
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const body = { size, brand_name: brandName, tread_pattern: treadPattern, price: price };
+      const body = { brand_name: brand, size, tread_pattern: tread };
       const response = await fetch(apiUrl, {
         method: "POST",
         headers: { "content-Type": "application/json" },
@@ -38,6 +36,21 @@ export default function NewInput() {
       </Box>
 
       <form onSubmit={handleSubmit}>
+        <InputLabel htmlFor="brand_name">Brand Name</InputLabel>
+        <Input sx={{ marginRight: 5, }}
+          required
+          id="brand_name"
+          placeholder="Continental"
+          inputProps={{
+            'aria-label': 'Brand name',
+            minLength: 2,
+            maxLength: 35,
+          }}
+          type="text"
+          value={brand}
+          onChange={(e) => setBrand(e.target.value)}
+        />
+
         <InputLabel htmlFor="tire-size">Tire Size</InputLabel>
         <Input sx={{ marginRight: 5, }}
           required
@@ -53,43 +66,15 @@ export default function NewInput() {
           onChange={(e) => setSize(e.target.value)}
         />
 
-        <InputLabel htmlFor="brand_name">Brand Name</InputLabel>
-        <Input sx={{ marginRight: 5, }}
-          required
-          id="brand_name"
-          placeholder="Continental"
-          inputProps={{
-            'aria-label': 'Brand name',
-            minLength: 2,
-            maxLength: 35,
-          }}
-          type="text"
-          value={brandName}
-          onChange={(e) => setBrandName(e.target.value)}
-        />
-
-        <InputLabel htmlFor="stock">Stock</InputLabel>
-        <Input sx={{ marginRight: 5, }}
-          required
-          id="stock"
-          placeholder="Stock"
-          inputProps={{
-            'aria-label': 'Stock',
-            minLength: 1,
-            maxLength: 20,
-          }}
-          type="text"
-          value={stock}
-          onChange={(e) => setStock(e.target.value)}
-        />
-
-
         <Button
           variant="contained"
           size="small"
           type="submit"
-          disabled={!size.trim() && !brandName.trim() && !treadPattern.trim() && !stock.trim() && !price.trim()} // Disable button if size is empty or whitespace
-        >
+          disabled={
+            !brand.trim() &&
+            !size.trim() &&
+            !tread.trim()
+          }>
           Add
         </Button>
 
@@ -104,29 +89,9 @@ export default function NewInput() {
             maxLength: 20,
           }}
           type="text"
-          value={treadPattern}
-          onChange={(e) => setTreadPattern(e.target.value)}
+          value={tread}
+          onChange={(e) => setTread(e.target.value)}
         />
-
-  <InputLabel htmlFor="price">Price</InputLabel>
-        <Input sx={{ marginRight: 5, }}
-          required
-          id="price"
-          placeholder="000"
-          inputProps={{
-            'aria-label': 'Price',
-            minLength: 2,
-            maxLength: 10,
-          }}
-          type="text"
-          value={price}
-          onChange={(e) => setPrice(e.target.value)}
-        />
-
-
-
-
-
       </form >
     </>
   );

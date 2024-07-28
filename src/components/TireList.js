@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from "react";
-
-// Material UI
 import { Table, TableBody, TableCell, TableHead, TableRow, IconButton } from '@mui/material';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-
-import { Button } from '@mui/material';
 
 // Component
 import TireEdit from "./TireEdit";
@@ -14,7 +10,7 @@ const apiUrl = 'http://localhost:4000/api/tires';
 export default function TireList() {
   const [tires, setTires] = useState([]);
 
-  // delete to do
+  // Delete one by id
   const handleDelete = async (id) => {
     try {
       const response = await fetch(`${apiUrl}/${id}`, { method: "DELETE" });
@@ -27,7 +23,7 @@ export default function TireList() {
     }
   };
 
-  // get all items
+  // Get all items
   const getTires = async () => {
     try {
       const response = await fetch(apiUrl);
@@ -49,11 +45,10 @@ export default function TireList() {
       <Table className="table mt-5 text-left">
         <TableHead>
           <TableRow>
-            <TableCell>Brand</TableCell>
-            <TableCell>Stock</TableCell>
-            <TableCell>price</TableCell>
-            <TableCell>Size</TableCell>
-            <TableCell>Tread</TableCell>
+            <TableCell>Brand Name</TableCell>
+            <TableCell>Tire Size</TableCell>
+            <TableCell>Tread Pattern</TableCell>
+
             <TableCell>Edit Tire</TableCell>
             <TableCell>Delete</TableCell>
           </TableRow>
@@ -62,8 +57,6 @@ export default function TireList() {
           {tires.map((tires) => (
             <TableRow key={tires.tire_id}>
               <TableCell>{tires.brand_name}</TableCell>
-              <TableCell>{tires.stock}</TableCell>
-              <TableCell>{tires.price}</TableCell>
               <TableCell>{tires.size}</TableCell>
               <TableCell>{tires.tread_pattern}</TableCell>
               <TableCell>
@@ -90,43 +83,3 @@ export default function TireList() {
 
   );
 }
-
-// return (
-//   <>
-//     <Table className="table mt-5 text-left">
-//       <TableHead>
-//         <TableRow>
-//           <TableCell>Tire Size</TableCell>
-//           <TableCell>Brand</TableCell>
-//           <TableCell>Tread Pattern</TableCell>
-//           <TableCell>Edit Tire</TableCell>
-//           <TableCell>Delete</TableCell>
-//         </TableRow>
-//       </TableHead>
-//       <TableBody>
-//         {tires.map((tire) => (
-//           <TableRow key={tire.tire_id}>
-//             <TableCell>{tire.size}</TableCell>
-//             <TableCell>{tire.brand}</TableCell>
-//             <TableCell>{tire.treadPattern}</TableCell>
-//             <TableCell>
-//               <TireEdit tire={tire} />
-//             </TableCell>
-//             <TableCell>
-//               <IconButton
-//                 onClick={() => handleDelete(tire.tire_id)}
-//                 variant="contained"
-//                 aria-label="delete"
-//                 color="primary"
-//                 size="small"
-//               >
-//                 <DeleteForeverIcon fontSize="large" />
-//               </IconButton>
-//             </TableCell>
-//           </TableRow>
-//         ))}
-//       </TableBody>
-//     </Table>
-//   </>
-// );
-// }
