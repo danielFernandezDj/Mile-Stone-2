@@ -6,14 +6,14 @@ export default function NewInput() {
   const [size, setSize] = useState("");
   const [brandName, setBrandName] = useState("");
   const [stock, setStock] = useState("");
-  const [treadPattern, setTreadPattern] = useState("")
-
+  const [treadPattern, setTreadPattern] = useState("");
+const [price, setPrice] = useState ("")
   const apiUrl = 'http://localhost:4000/api/tires';
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const body = { size, brand_name: brandName, tread_pattern: treadPattern };
+      const body = { size, brand_name: brandName, tread_pattern: treadPattern, price: price };
       const response = await fetch(apiUrl, {
         method: "POST",
         headers: { "content-Type": "application/json" },
@@ -60,7 +60,7 @@ export default function NewInput() {
           placeholder="Continental"
           inputProps={{
             'aria-label': 'Brand name',
-            minLength: 4,
+            minLength: 2,
             maxLength: 35,
           }}
           type="text"
@@ -75,7 +75,7 @@ export default function NewInput() {
           placeholder="Stock"
           inputProps={{
             'aria-label': 'Stock',
-            minLength: 2,
+            minLength: 1,
             maxLength: 20,
           }}
           type="text"
@@ -88,7 +88,7 @@ export default function NewInput() {
           variant="contained"
           size="small"
           type="submit"
-          disabled={!size.trim() && !brandName.trim() && !treadPattern.trim() && !stock.trim()} // Disable button if size is empty or whitespace
+          disabled={!size.trim() && !brandName.trim() && !treadPattern.trim() && !stock.trim() && !price.trim()} // Disable button if size is empty or whitespace
         >
           Add
         </Button>
@@ -107,6 +107,26 @@ export default function NewInput() {
           value={treadPattern}
           onChange={(e) => setTreadPattern(e.target.value)}
         />
+
+  <InputLabel htmlFor="price">Price</InputLabel>
+        <Input sx={{ marginRight: 5, }}
+          required
+          id="price"
+          placeholder="225/70/15"
+          inputProps={{
+            'aria-label': 'Price',
+            minLength: 2,
+            maxLength: 10,
+          }}
+          type="text"
+          value={price}
+          onChange={(e) => setPrice(e.target.value)}
+        />
+
+
+
+
+
       </form >
     </>
   );
