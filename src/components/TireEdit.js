@@ -6,7 +6,8 @@ import {
 } from "@mui/material";
 import { Button, Box, TextField } from "@mui/material";
 
-const apiUrl = "http://localhost:4000/api/tires";
+// const apiUrl = "http://localhost:4000/api/tires";
+const apiUrl = '/api/tires';
 
 export default function TireEdit({ tires }) {
   // State for the form inputs

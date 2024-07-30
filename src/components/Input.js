@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Typography, Button, Input, InputLabel, Box } from '@mui/material';
 
-
 export default function NewInput() {
   const [brand, setBrand] = useState("");
   const [size, setSize] = useState("");

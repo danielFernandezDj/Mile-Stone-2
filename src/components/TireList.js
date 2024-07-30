@@ -5,7 +5,10 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 // Component
 import TireEdit from "./TireEdit";
 
-const apiUrl = 'http://localhost:4000/api/tires';
+// const apiUrl = 'http://localhost:4000/api/tires';
+const apiUrl = '/api/tires';
+
+console.log('tireEdit-api', apiUrl)
 
 export default function TireList() {
   const [tires, setTires] = useState([]);
@@ -31,7 +34,7 @@ export default function TireList() {
 
       setTires(jsonData);
     } catch (error) {
-      console.log(error.message);
+      console.log(error.message, "is not working :(");
     }
   };
 
