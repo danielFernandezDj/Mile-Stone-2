@@ -1,36 +1,48 @@
 import React, { useState } from "react";
-import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@mui/material';
-import { Button, Box, TextField } from '@mui/material';
+import {
+  Dialog,
+  DialogContent,
+  DialogTitle,
+} from "@mui/material";
+import { Button, Box, TextField } from "@mui/material";
 
-const apiUrl = 'http://localhost:4000/api/tires';
+// const apiUrl = "http://localhost:4000/api/tires";
+const apiUrl = '/api/tires';
 
 export default function TireEdit({ tires }) {
-  const [size, setSize] = useState(tires.size);
+  // State for the form inputs
+  const [tempBrand, setTempBrand] = useState(tires.brand_name);
   const [tempSize, setTempSize] = useState(tires.size);
+  const [tempTread, setTempTread] = useState(tires.tread_pattern);
 
-  const updateSize = async (e) => {
+  const updateTire = async (e) => {
     e.preventDefault();
     try {
-      const body = { size: tempSize };
+      const body = { brand_name: tempBrand, size: tempSize, tread_pattern: tempTread };
+      console.log("Sending data:", body);
+
       const response = await fetch(`${apiUrl}/${tires.tire_id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
       });
+
+      console.log("Response status:", response.status);
+
       if (response.ok) {
-        setSize(tempSize)
-        window.location = "/";
+        window.location.reload();
+      } else {
+        console.error("Failed to update tire:", response.statusText);
       }
     } catch (error) {
-      console.log(error.message);
+      console.log("Error:", error.message);
     }
   };
 
-  // Dialog MUi
-  const [open, setOpen] = React.useState(false);
+  // Dialog MUI
+  const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
-    setTempSize(size)
     setOpen(true);
   };
 
@@ -45,7 +57,6 @@ export default function TireEdit({ tires }) {
           type="button"
           variant="contained"
           onClick={handleClickOpen}
-          data-bs-target={`#id${tires.tire_id}`}
         >
           Edit
         </Button>
@@ -53,31 +64,32 @@ export default function TireEdit({ tires }) {
 
       <Dialog
         open={open}
-        className="modal"
         onClose={handleClose}
-
         aria-labelledby="alert-dialog-title"
-        // aria-describedby="alert-dialog-description"
-
-        id={`id${tires.tire_id}`}
-        onClick={() => {
-          setSize(tires.size);
-        }}
       >
-        <DialogTitle sx={{ fontSize: 30, fontWeight: 'bold' }}
-          id="alert-dialog-title">
-          {"Change the Size!"}
-        </DialogTitle>
-
-        <DialogContent sx={{textAlign: 'center'}}>
+        <DialogTitle id="alert-dialog-title">{"Edit the Tire!"}</DialogTitle>
+        <DialogContent sx={{ textAlign: "center" }}>
           <Box>
-            <TextField sx={{ mb: 2, width: 1/2}}
-              width="20px"
+            <TextField
+              sx={{ mb: 2, mr: 2, width: 1 / 4 }}
+              value={tempBrand}
+              type="text"
+              variant="outlined"
+              onChange={(e) => setTempBrand(e.target.value)}
+            />
+            <TextField
+              sx={{ mb: 2, mr: 2, width: 1 / 5 }}
               value={tempSize}
               type="text"
-              id="outlined-basic"
               variant="outlined"
               onChange={(e) => setTempSize(e.target.value)}
+            />
+            <TextField
+              sx={{ mb: 2, mr: 2, width: 1 / 4 }}
+              value={tempTread}
+              type="text"
+              variant="outlined"
+              onChange={(e) => setTempTread(e.target.value)}
             />
           </Box>
 
@@ -85,9 +97,9 @@ export default function TireEdit({ tires }) {
             <Button
               type="submit"
               variant="outlined"
-              onClick={(e) => updateSize(e)}
+              onClick={updateTire}
             >
-              Edit
+              Save
             </Button>
           </Box>
         </DialogContent>

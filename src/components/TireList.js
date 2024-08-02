@@ -1,20 +1,19 @@
 import React, { useEffect, useState } from "react";
-
-// Material UI
 import { Table, TableBody, TableCell, TableHead, TableRow, IconButton } from '@mui/material';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-
-import { Button } from '@mui/material';
 
 // Component
 import TireEdit from "./TireEdit";
 
-const apiUrl = 'http://localhost:4000/api/tires';
+// const apiUrl = 'http://localhost:4000/api/tires';
+const apiUrl = '/api/tires';
+
+console.log('tireEdit-api', apiUrl)
 
 export default function TireList() {
   const [tires, setTires] = useState([]);
 
-  // delete to do
+  // Delete one by id
   const handleDelete = async (id) => {
     try {
       const response = await fetch(`${apiUrl}/${id}`, { method: "DELETE" });
@@ -27,7 +26,7 @@ export default function TireList() {
     }
   };
 
-  // get all items
+  // Get all items
   const getTires = async () => {
     try {
       const response = await fetch(apiUrl);
@@ -35,7 +34,7 @@ export default function TireList() {
 
       setTires(jsonData);
     } catch (error) {
-      console.log(error.message);
+      console.log(error.message, "is not working :(");
     }
   };
 
@@ -49,7 +48,10 @@ export default function TireList() {
       <Table className="table mt-5 text-left">
         <TableHead>
           <TableRow>
+            <TableCell>Brand Name</TableCell>
             <TableCell>Tire Size</TableCell>
+            <TableCell>Tread Pattern</TableCell>
+
             <TableCell>Edit Tire</TableCell>
             <TableCell>Delete</TableCell>
           </TableRow>
@@ -57,7 +59,9 @@ export default function TireList() {
         <TableBody>
           {tires.map((tires) => (
             <TableRow key={tires.tire_id}>
+              <TableCell>{tires.brand_name}</TableCell>
               <TableCell>{tires.size}</TableCell>
+              <TableCell>{tires.tread_pattern}</TableCell>
               <TableCell>
                 <TireEdit tires={tires} />
               </TableCell>
@@ -68,7 +72,7 @@ export default function TireList() {
                   color="primary"
                   size="small"
                 >
-                  <DeleteForeverIcon fontSize="large"/>
+                  <DeleteForeverIcon fontSize="large" />
                 </IconButton>
               </TableCell>
             </TableRow>
@@ -76,5 +80,9 @@ export default function TireList() {
         </TableBody>
       </Table>
     </>
+
+
+
+
   );
 }
